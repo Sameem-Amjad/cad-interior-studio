@@ -82,7 +82,7 @@ function CatalogPanel() {
         />
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex shrink-0 gap-2 overflow-x-auto pb-1">
         {CATEGORIES.map((c) => (
           <Chip key={c} active={category === c} onClick={() => setCategory(c)}>
             {c}

@@ -568,8 +568,6 @@ function PlacementGhost() {
   const [valid, setValid] = React.useState(true);
   const [visible, setVisible] = React.useState(false);
   const pose = React.useRef<{ position: Vec3; rotationY: number }>({ position: [0, 0, 0], rotationY: 0 });
-  const visibleRef = React.useRef(visible);
-  visibleRef.current = visible;
   const pressed = React.useRef<{ x: number; y: number } | null>(null);
 
   const spec = catalogId ? byId.get(catalogId) : undefined;
@@ -601,21 +599,26 @@ function PlacementGhost() {
     }
     const el = gl.domElement;
 
-    const move = (e: PointerEvent) => {
+    /** Where the item would land under this pointer, or null off the active room's floor. */
+    const poseAt = (e: PointerEvent): Vec3 | null => {
       const hit = pointOnFloor(e, gl, camera, floors);
       const state = useScene.getState();
       const room = state.model?.rooms.find((r) => r.id === state.activeRoomId);
-      if (!hit || !room || !spec) {
+      if (!hit || !room || !spec) return null;
+      return snapPosition(clampToRoom(spec, [hit.x, room.floorY, hit.z], 0, room), snapEnabled);
+    };
+
+    const move = (e: PointerEvent) => {
+      const position = poseAt(e);
+      if (!position || !spec) {
         setVisible(false);
         return;
       }
-      let position: Vec3 = [hit.x, room.floorY, hit.z];
-      position = clampToRoom(spec, position, 0, room);
-      position = snapPosition(position, snapEnabled);
       pose.current = { position, rotationY: 0 };
       group.current?.position.set(...position);
       setVisible(true);
-      const placed = state.doc.rooms[room.id]?.items ?? [];
+      const state = useScene.getState();
+      const placed = state.doc.rooms[state.activeRoomId ?? ""]?.items ?? [];
       setValid(!collides({ item: spec, position, rotationY: 0 }, placed, (id) => byId.get(id)));
     };
 
@@ -626,11 +629,14 @@ function PlacementGhost() {
     const commit = (e: PointerEvent) => {
       const start = pressed.current;
       pressed.current = null;
-      if (e.button !== 0 || !visibleRef.current || !start) return;
+      if (e.button !== 0 || !start) return;
       // An orbit drag also ends in a pointerup — only a near-stationary one places.
       if (Math.hypot(e.clientX - start.x, e.clientY - start.y) > 5) return;
+      // Taken from this event, not the hover ghost: a touch tap never hovers first.
+      const position = poseAt(e);
+      if (!position) return;
       const state = useScene.getState();
-      state.placeItem(catalogId, pose.current.position, pose.current.rotationY);
+      state.placeItem(catalogId, position, pose.current.rotationY);
       // Shift keeps the card armed for rapid repeat placement.
       if (!e.shiftKey) state.setPlacing(null);
     };
