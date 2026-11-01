@@ -12,6 +12,13 @@ import type { BuildingModel } from "../engine/ingest/types";
 
 type Phase = { kind: "idle" } | { kind: "loading"; file: string; progress: number; note: string } | { kind: "error"; message: string };
 
+// What a first-time visitor needs to know before dropping a file.
+const STEPS = [
+  { title: "Your drawing, in 3D", body: "An IFC or GLB file becomes a walkable building in the browser, room by room." },
+  { title: "Design with real products", body: "Place catalog furniture, drag and rotate it, and change floors and walls." },
+  { title: "AI ideas, kept honest", body: "Style concepts for inspiration, and an auto-style that only uses catalog items." },
+];
+
 export default function Landing() {
   const router = useRouter();
   const loadModel = useScene((s) => s.loadModel);
@@ -82,7 +89,7 @@ export default function Landing() {
   };
 
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden">
+    <div className="flex min-h-screen w-full flex-col">
       <header className="flex w-full items-center gap-3 p-4">
         <div className="grid h-8 w-8 place-items-center rounded-md border border-border-subtle bg-surface-high">
           <Boxes size={18} strokeWidth={1.6} className="text-primary" />
@@ -90,7 +97,7 @@ export default function Landing() {
         <h1 className="text-[18px] font-semibold tracking-[-0.01em]">Studio PoC</h1>
       </header>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-4">
+      <main className="flex flex-1 flex-col items-center justify-center px-4 py-6">
         {phase.kind === "loading" ? (
           <ConvertingCard
             file={phase.file}
@@ -183,6 +190,18 @@ export default function Landing() {
               <Info size={13} strokeWidth={1.6} />
               <span>Big IFC files take up to a minute. Everything stays on this machine.</span>
             </div>
+
+            <ol className="mt-10 grid w-full gap-3 sm:grid-cols-3">
+              {STEPS.map((step, i) => (
+                <li key={step.title} className="rounded-lg border border-border-subtle bg-surface-lowest p-4">
+                  <div className="flex items-center gap-2 text-[13px] font-semibold">
+                    <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary/15 text-[11px] text-primary">{i + 1}</span>
+                    {step.title}
+                  </div>
+                  <p className="mt-1.5 text-[12px] leading-5 text-text-secondary">{step.body}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         )}
       </main>
