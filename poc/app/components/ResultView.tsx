@@ -84,8 +84,8 @@ export default function ResultView() {
   const breakdown = countByCategory(room?.items ?? []);
 
   return (
-    <div className="fixed inset-0 top-14 z-50 flex bg-background">
-      <div className="flex flex-1 flex-col overflow-hidden p-6">
+    <div className="fixed inset-0 top-14 z-50 flex bg-background max-md:flex-col max-md:overflow-y-auto">
+      <div className="flex flex-1 flex-col overflow-hidden p-6 max-md:min-h-[58vh] max-md:flex-none max-md:p-3">
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-baseline gap-3">
             <h2 className="text-[18px] font-semibold tracking-[-0.01em]">Before &amp; after</h2>
@@ -147,7 +147,7 @@ export default function ResultView() {
         </div>
       </div>
 
-      <aside className="flex w-[300px] shrink-0 flex-col gap-4 border-l border-border-subtle bg-surface p-4">
+      <aside className="flex w-[300px] shrink-0 flex-col gap-4 border-l border-border-subtle bg-surface p-4 max-md:w-full max-md:border-l-0 max-md:border-t">
         <PanelTitle>Result</PanelTitle>
         <dl className="flex flex-col gap-2 text-[13px]">
           <Row label="Room" value={roomName} />

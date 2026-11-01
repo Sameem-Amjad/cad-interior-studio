@@ -19,7 +19,7 @@ export default function RightSidebar() {
   const effective = selected && tab === "inspector" ? "inspector" : tab;
 
   return (
-    <aside className="z-40 flex h-full w-[300px] shrink-0 flex-col border-l border-border-subtle bg-surface">
+    <aside className="z-40 flex h-full w-[300px] shrink-0 flex-col border-l border-border-subtle bg-surface max-md:w-full max-md:border-l-0">
       <div className="flex gap-4 border-b border-border-subtle px-4 pt-2">
         {(["catalog", "style"] as const).map((t) => (
           <button

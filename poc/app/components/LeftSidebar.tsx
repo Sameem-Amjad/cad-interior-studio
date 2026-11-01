@@ -37,7 +37,7 @@ export default function LeftSidebar() {
   };
 
   return (
-    <aside className="z-40 flex h-full w-60 shrink-0 flex-col border-r border-border-subtle bg-surface">
+    <aside className="z-40 flex h-full w-60 shrink-0 flex-col border-r border-border-subtle bg-surface max-md:w-full max-md:border-r-0">
       <div className="flex-1 overflow-y-auto p-3">
         <PanelTitle className="mb-2 px-3">Rooms</PanelTitle>
         <ul className="space-y-0.5">

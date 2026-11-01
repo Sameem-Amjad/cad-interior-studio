@@ -40,24 +40,24 @@ export default function TopBar() {
   const kindBadge = model?.kind === "ifc" ? "IFC" : model?.kind === "glb" ? "GLB" : "SAMPLE";
 
   return (
-    <header className="flex h-14 w-full shrink-0 items-center justify-between border-b border-border-subtle bg-surface px-4">
-      <div className="flex items-center gap-4">
+    <header className="flex h-14 w-full shrink-0 items-center justify-between gap-2 border-b border-border-subtle bg-surface px-4 max-md:px-2">
+      <div className="flex min-w-0 items-center gap-4 max-md:gap-2">
         <IconButton icon={ArrowLeft} label="Back to file loader" onClick={() => router.push("/")} />
-        <div className="flex items-center gap-2">
-          <span className="text-[18px] font-semibold tracking-[-0.01em]">Studio PoC</span>
-          <span className="px-1 text-on-surface-variant">|</span>
-          <span className="max-w-[280px] truncate text-[14px]">{model?.name ?? "—"}</span>
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="text-[18px] font-semibold tracking-[-0.01em] max-md:hidden">Studio PoC</span>
+          <span className="px-1 text-on-surface-variant max-md:hidden">|</span>
+          <span className="max-w-[280px] truncate text-[14px] max-md:max-w-[110px]">{model?.name ?? "—"}</span>
           <Badge>{kindBadge}</Badge>
           {model && !model.stats.realRooms ? <Badge tone="warning">no room data</Badge> : null}
         </div>
       </div>
 
       <div className="flex items-center gap-2">
-        <Button icon={Save} onClick={onSave}>
-          Save design
+        <Button icon={Save} onClick={onSave} aria-label="Save design" className="max-md:px-2">
+          <span className="max-md:hidden">Save design</span>
         </Button>
-        <Button icon={FolderOpen} onClick={() => fileRef.current?.click()}>
-          Load
+        <Button icon={FolderOpen} onClick={() => fileRef.current?.click()} aria-label="Load" className="max-md:px-2">
+          <span className="max-md:hidden">Load</span>
         </Button>
         <input
           ref={fileRef}
@@ -70,13 +70,13 @@ export default function TopBar() {
             e.target.value = "";
           }}
         />
-        <Button icon={SplitSquareHorizontal} onClick={() => setShowResult(true)}>
-          Result
+        <Button icon={SplitSquareHorizontal} onClick={() => setShowResult(true)} aria-label="Result" className="max-md:px-2">
+          <span className="max-md:hidden">Result</span>
         </Button>
         <Button
           variant="primary"
           icon={Sparkles}
-          className="ml-2"
+          className="ml-2 max-md:hidden"
           onClick={() => setRightTab("style")}
         >
           AI Optimize

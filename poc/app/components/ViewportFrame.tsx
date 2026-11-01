@@ -37,7 +37,7 @@ export default function ViewportFrame() {
       </div>
 
       {/* Bottom-left hint chip */}
-      <div className="glass pointer-events-none absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full px-3 py-1.5">
+      <div className="glass pointer-events-none absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full px-3 py-1.5 max-md:hidden">
         <Info size={13} strokeWidth={1.7} className="text-text-secondary" />
         <span className="text-[11px] text-text-secondary">{hint(mode, Boolean(placing))}</span>
       </div>
