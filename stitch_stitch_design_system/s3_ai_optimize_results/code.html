@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StudioPro 3D - AI Optimize (Results)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#adc6ff",
+                        "on-secondary-fixed": "#191c23",
+                        "surface-container-low": "#1a1c20",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-container": "#1e2024",
+                        "tertiary-fixed": "#ffdcc6",
+                        "surface-container-lowest": "#0c0e12",
+                        "text-secondary": "#8A93A6",
+                        "primary-fixed-dim": "#adc6ff",
+                        "warning": "#F59E0B",
+                        "on-tertiary": "#502400",
+                        "on-secondary-fixed-variant": "#44474f",
+                        "surface-bright": "#37393e",
+                        "text-primary": "#E8EAF0",
+                        "on-error": "#690005",
+                        "on-primary-container": "#00285d",
+                        "on-error-container": "#ffdad6",
+                        "viewport-bg": "#0B0D10",
+                        "danger": "#EF4444",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-variant": "#333539",
+                        "on-secondary-container": "#b3b5be",
+                        "surface": "#111317",
+                        "inverse-surface": "#e2e2e8",
+                        "tertiary-container": "#df7412",
+                        "error-container": "#93000a",
+                        "success": "#10B981",
+                        "outline-variant": "#424754",
+                        "on-background": "#e2e2e8",
+                        "secondary-fixed": "#e0e2ec",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary": "#ffb786",
+                        "inverse-on-surface": "#2f3035",
+                        "surface-container-highest": "#333539",
+                        "primary-container": "#4d8eff",
+                        "secondary-container": "#44474f",
+                        "background": "#111317",
+                        "surface-dim": "#111317",
+                        "inverse-primary": "#005ac2",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "secondary-fixed-dim": "#c4c6d0",
+                        "on-secondary": "#2d3038",
+                        "secondary": "#c4c6d0",
+                        "on-tertiary-container": "#461f00",
+                        "surface-container-high": "#282a2e",
+                        "on-primary": "#002e6a",
+                        "outline": "#8c909f",
+                        "on-surface": "#e2e2e8",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#001a42",
+                        "surface-tint": "#adc6ff",
+                        "on-tertiary-fixed": "#311400",
+                        "border-subtle": "#262B36"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1rem",
+                        "sidebar-left": "240px",
+                        "topbar-height": "56px",
+                        "sidebar-right": "300px",
+                        "panel-gap": "1px",
+                        "gutter-md": "12px",
+                        "gutter-lg": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "mono-label": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-base": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-label": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#0F1115] text-text-primary h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-[#171A21] flex justify-between items-center px-gutter-lg w-full fixed top-0 z-50 h-[56px] border-b border-[#262B36]">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md text-text-primary tracking-tight">StudioPro 3D</h1>
+<div class="h-4 w-px bg-border-subtle mx-2"></div>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                villa-27.ifc
+            </span>
+<span class="bg-surface-container-highest text-text-primary font-label-caps text-label-caps px-2 py-0.5 rounded ml-2">IFC</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-text-primary transition-colors h-8 w-8 flex items-center justify-center rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+</button>
+<button class="text-on-surface-variant hover:text-text-primary transition-colors h-8 w-8 flex items-center justify-center rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="text-on-surface-variant hover:text-text-primary transition-colors h-8 w-8 flex items-center justify-center rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<div class="h-4 w-px bg-border-subtle mx-2"></div>
+<button class="font-label-caps text-label-caps px-4 py-2 border border-border-subtle rounded text-text-primary hover:bg-surface-variant transition-colors">
+                Save
+            </button>
+<button class="font-label-caps text-label-caps px-4 py-2 bg-[#3B82F6] rounded text-white hover:bg-blue-600 transition-colors">
+                AI Optimize
+            </button>
+</div>
+</header>
+<div class="flex flex-1 pt-[56px] h-full overflow-hidden">
+<!-- SideNavBar Left -->
+<aside class="w-sidebar-left bg-[#171A21] border-r border-[#262B36] flex flex-col h-full flex-shrink-0 z-40">
+<div class="p-gutter-md border-b border-border-subtle">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-high border border-border-subtle flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Abstract dark minimalist icon representing a high-end architectural project, geometric shapes, blue accents, professional UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXAu8LBY71rFBR36230WDPkQkyZ0gU1LyRsW3WjKyMgBk6sDHicaLdsMxxsio2mS0shDkmK_FExu-WlqgEnsFjuwF6ckbJy0Yvh-PTfjHypJ-TgfFMDmljLDSU7T1ZjvsJ71j0BettXrjsATjqXiQyV0wMtP5cOcj2g_ymOUcD3AHehvm-c-bb54E09UQTVB4dzz3M9NXL3NyrZ4zRzvonFVDRLjxstHvfUv9KqJQtQgYyfz6NVg1wFg"/>
+</div>
+<div>
+<div class="font-body-sm text-body-sm text-text-primary font-semibold">Project Alpha</div>
+<div class="font-label-sm text-label-sm text-text-secondary">Modern Loft</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-2">
+<a class="flex items-center gap-3 px-gutter-md py-2.5 text-on-surface-variant opacity-70 hover:bg-surface-container-highest hover:opacity-100 transition-all duration-150 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+                    Scene
+                </a>
+<a class="flex items-center gap-3 px-gutter-md py-2.5 text-on-surface-variant opacity-70 hover:bg-surface-container-highest hover:opacity-100 transition-all duration-150 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">category</span>
+                    Catalog
+                </a>
+<a class="flex items-center gap-3 px-gutter-md py-2.5 text-on-surface-variant opacity-70 hover:bg-surface-container-highest hover:opacity-100 transition-all duration-150 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+                    Layers
+                </a>
+<a class="flex items-center gap-3 px-gutter-md py-2.5 border-l-2 border-[#3B82F6] bg-surface-container-high text-[#3B82F6] font-bold transition-all duration-150 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                    Inspector
+                </a>
+<a class="flex items-center gap-3 px-gutter-md py-2.5 text-on-surface-variant opacity-70 hover:bg-surface-container-highest hover:opacity-100 transition-all duration-150 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[18px]">update</span>
+                    History
+                </a>
+</nav>
+<div class="mt-auto p-gutter-md border-t border-border-subtle space-y-2">
+<button class="w-full flex items-center justify-center gap-2 font-label-caps text-label-caps px-4 py-2 border border-border-subtle rounded text-text-primary hover:bg-surface-variant transition-colors">
+                    Export Render
+                </button>
+<div class="flex border-t border-border-subtle pt-2 mt-2">
+<a class="flex-1 flex justify-center items-center py-2 text-on-surface-variant opacity-70 hover:text-text-primary hover:opacity-100 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" title="Help">help</span>
+</a>
+<div class="w-px bg-border-subtle"></div>
+<a class="flex-1 flex justify-center items-center py-2 text-on-surface-variant opacity-70 hover:text-text-primary hover:opacity-100 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" title="Feedback">chat_bubble</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- 3D Viewport (Center) -->
+<main class="flex-1 bg-[#0B0D10] relative overflow-hidden flex flex-col">
+<!-- Simulated 3D Viewport Background -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A sophisticated 3D wireframe render of a modern living room interior, architectural visualization style, dark background with glowing cyan and blue lines outlining furniture, walls, and a large window, conveying high-end CAD software environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_pbFHgciP7eGuaUkTG6GQTbh5sOTQr6ORNeaxYM5DxJqo5u9opn4W338iLX_70ZDP6wbaeTRqhobCm1zd4BR_tDqKul5CRIklbUmc85uTJ3VS0Ewno1Vh8IiRSp148rTD5gkBuV6FUDqbjcD6rGi7diZWsupzok69yNgYXGhOkV-pg-wzMDczSHcdjAviZ9gcuDFCdKct_ODt1yagv2NhhemhxERz_Zq-miWliD8BuBrbu92ZO8G9iw"/>
+<div class="absolute inset-0 bg-gradient-to-b from-[#0B0D10]/50 to-transparent"></div>
+</div>
+<!-- Viewport Overlay Controls -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 z-10">
+<div class="flex items-center bg-[#171A21]/80 backdrop-blur-md border border-[#262B36] rounded-full px-2 py-1 gap-1">
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-[#3B82F6] hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">pan_tool</span>
+</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-[#3B82F6] bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">3d_rotation</span>
+</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-[#3B82F6] hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+<div class="h-4 w-px bg-border-subtle mx-1"></div>
+<button class="h-8 w-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-[#3B82F6] hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Right Sidebar (Style Tab Active) -->
+<aside class="w-sidebar-right bg-[#171A21] border-l border-[#262B36] flex flex-col h-full flex-shrink-0 z-40">
+<!-- Right Sidebar Tabs -->
+<div class="flex border-b border-[#262B36]">
+<button class="flex-1 py-3 text-center font-label-caps text-label-caps text-on-surface-variant opacity-70 hover:opacity-100 hover:bg-surface-container-highest transition-colors border-b-2 border-transparent">
+                    DATA
+                </button>
+<button class="flex-1 py-3 text-center font-label-caps text-label-caps text-[#3B82F6] border-b-2 border-[#3B82F6] bg-surface-container-high transition-colors font-bold">
+                    STYLE
+                </button>
+<button class="flex-1 py-3 text-center font-label-caps text-label-caps text-on-surface-variant opacity-70 hover:opacity-100 hover:bg-surface-container-highest transition-colors border-b-2 border-transparent">
+                    RENDER
+                </button>
+</div>
+<!-- Style Content -->
+<div class="flex-1 overflow-y-auto p-gutter-lg flex flex-col gap-6">
+<!-- Header & CTA -->
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h2 class="font-body-sm text-body-sm text-text-primary font-semibold">AI Style Concepts</h2>
+<span class="bg-[#3B82F6]/10 text-[#3B82F6] border border-[#3B82F6]/30 font-label-sm text-label-sm px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span>
+                            Japandi
+                        </span>
+</div>
+<button class="w-full flex items-center justify-center gap-2 font-label-caps text-label-caps px-4 py-2.5 bg-surface-container border border-border-subtle rounded text-text-primary hover:border-[#3B82F6] transition-colors">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                        Generate 4 concepts
+                    </button>
+</div>
+<!-- Results Grid -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Image 1 (Hovered State) -->
+<div class="relative aspect-square rounded-lg border border-[#3B82F6] overflow-hidden group cursor-pointer ring-1 ring-[#3B82F6]/50">
+<img class="w-full h-full object-cover" data-alt="A highly detailed AI-generated photorealistic interior design concept of a Japandi style living room. Warm wood tones, minimalist furniture, soft natural lighting filtering through sheer curtains, neutral color palette with subtle earthy accents, clean lines, professional 3D architectural visualization quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiEzkasr6O-eytn82Jlv4hGP--q4eXBzLlXymp_1yo_ymt0Y5wIeH0EAYQU1nOlE4ikoPR5627zpGY6hazKZqKVm5rb5kmG-_f8F6zWPYK59VqxEW1XI2ixJCCdVSF-UR6zW2kQT3wjLKz9ZCsHM4lMcGxmb2V70MayH5x4jdqHtDzpo4uj1z1Je26U2sz_Fpei36OJzGP-k4Te-cr1l2PI5bnx8Lmfek5lDkcSf_12Cyb4q8hMiRsCQ"/>
+<!-- AI Watermark -->
+<div class="absolute bottom-1 right-1 bg-black/60 backdrop-blur-sm border border-white/10 px-1.5 py-0.5 rounded text-[9px] font-mono-label text-white/80 uppercase tracking-wider flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">auto_awesome</span>
+                            AI concept
+                        </div>
+<!-- Hover Overlay -->
+<div class="absolute inset-0 bg-[#3B82F6]/20 backdrop-blur-[2px] flex items-center justify-center transition-opacity">
+<div class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-[20px]">zoom_in</span>
+</div>
+</div>
+</div>
+<!-- Image 2 -->
+<div class="relative aspect-square rounded-lg border border-border-subtle overflow-hidden hover:border-[#3B82F6] transition-colors cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A highly detailed AI-generated photorealistic interior design concept of a Japandi style living room, alternate angle. Emphasis on low-profile seating, textured wabi-sabi wall finishes, bamboo elements, soft diffused cinematic lighting, professional 3D architectural visualization quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALqB5LXqCG4B4OpSYgvS1amhkniCnFGzx2tLePrO2xYcNFNqkJdLzZd5bvjYR1FalnZjZW04cxy_YywcSowrEhSbZyVk7U9XS0dkGjMT7uCLTPoUtnSLd4rntbXFsS8qnfFb0b_1zsaLAXjHl0iOjo9RvnnO96s6NUNyB_CTNxXGMGo-TOEasDzpeCdi8TF_2yBEnhC83OMJUNcXVomWg6G5rXZadFZ24q0gOmIM7go32g7FknLU1VsA"/>
+<!-- AI Watermark -->
+<div class="absolute bottom-1 right-1 bg-black/60 backdrop-blur-sm border border-white/10 px-1.5 py-0.5 rounded text-[9px] font-mono-label text-white/80 uppercase tracking-wider flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">auto_awesome</span>
+                            AI concept
+                        </div>
+</div>
+<!-- Image 3 -->
+<div class="relative aspect-square rounded-lg border border-border-subtle overflow-hidden hover:border-[#3B82F6] transition-colors cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A highly detailed AI-generated photorealistic interior design concept of a Japandi style living room, focusing on a reading nook area. Featuring a minimal wooden chair, a paper lantern floor lamp, indoor bonsai plant, soft morning light, professional 3D architectural visualization quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwdyZuJqQDiDp0GKPAesZ4aOmEjJLOPrY9VH0GWz3PcdURE1P2kFtWMjspZ5gm93L7shGNvrZTtyHgbfjawaLC0G2Iacim9RQvcNoxl0hhTF7ugzIdeIovG015hv6Q-4tbUXb8Y5u5GL5KbQaR7AQMm4iX0hELVtGqWUQRV2XnsDJ19oeK5g05xOSkVuBxAKd9stXc7_e-lcgVlQrMsB3XgM6gf0QHieoPoBHSprDEt3yKR8TN-iaRDg"/>
+<!-- AI Watermark -->
+<div class="absolute bottom-1 right-1 bg-black/60 backdrop-blur-sm border border-white/10 px-1.5 py-0.5 rounded text-[9px] font-mono-label text-white/80 uppercase tracking-wider flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">auto_awesome</span>
+                            AI concept
+                        </div>
+</div>
+<!-- Image 4 -->
+<div class="relative aspect-square rounded-lg border border-border-subtle overflow-hidden hover:border-[#3B82F6] transition-colors cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A highly detailed AI-generated photorealistic interior design concept of a Japandi style living room, evening mood. Warm ambient lighting, sleek timber slatted wall feature, plush minimal rug, professional 3D architectural visualization quality, dark mode UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAFYkO_Xo5wdf7QjMceG2f95y-N5T8z6BrOukfBZFvM1deQnf8GMRGzsS_7u5tAaga7jEDSJuII1y7Kf0A8oLzXdYEWsKgFsjGmdcEW2S70-kjQWObdA15iHk6vvLB1n-ZaUq7vQ1H0U-v1cfMBFXsh6U3ZwpHeqHhbIkFQXv-iwMyCNHCZiqSD4RdoLuiw06zEpV7AIPazf6TsILPA4qk-9MFwtmM4Tlk_yFkx6ImmRHOjjIayRVi3g"/>
+<!-- AI Watermark -->
+<div class="absolute bottom-1 right-1 bg-black/60 backdrop-blur-sm border border-white/10 px-1.5 py-0.5 rounded text-[9px] font-mono-label text-white/80 uppercase tracking-wider flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">auto_awesome</span>
+                            AI concept
+                        </div>
+</div>
+</div>
+<!-- Caption -->
+<div class="text-center">
+<p class="font-body-sm text-body-sm text-text-secondary opacity-80">
+                        Inspiration only — items shown are not products.
+                    </p>
+</div>
+<!-- Refinement Controls -->
+<div class="mt-4 pt-4 border-t border-border-subtle flex flex-col gap-3">
+<label class="font-label-caps text-label-caps text-text-primary">Prompt Adjustments</label>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border border-border-subtle rounded-md p-3 font-body-sm text-body-sm text-text-primary focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] bg-transparent resize-none h-24" placeholder="Describe changes... e.g., 'Make it darker', 'Add more plants'"></textarea>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

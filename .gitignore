@@ -1,0 +1,19 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Build output and dependencies
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+poc/app/public/wasm
+
+# Client business documents (kept locally, not in the repo)
+chat.md
+proposal.html
+Interior-Design-Platform-Proposal.pdf
+
+.DS_Store

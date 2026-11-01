@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio PoC - S2b Studio with Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#44474f",
+                        "tertiary-container": "#df7412",
+                        "background": "#111317",
+                        "inverse-surface": "#e2e2e8",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-tertiary": "#502400",
+                        "on-primary-container": "#00285d",
+                        "tertiary-fixed": "#ffdcc6",
+                        "on-error": "#690005",
+                        "on-secondary": "#2d3038",
+                        "primary-container": "#4d8eff",
+                        "surface-container-highest": "#333539",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#44474f",
+                        "secondary-fixed": "#e0e2ec",
+                        "text-secondary": "#8A93A6",
+                        "on-tertiary-fixed": "#311400",
+                        "text-primary": "#E8EAF0",
+                        "secondary-fixed-dim": "#c4c6d0",
+                        "surface-container-high": "#282a2e",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "surface-container": "#171A21", // Adjusted per instructions for panels
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface": "#111317",
+                        "on-secondary-fixed": "#191c23",
+                        "tertiary": "#ffb786",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#005ac2",
+                        "viewport-bg": "#0B0D10",
+                        "surface-bright": "#37393e",
+                        "primary": "#3B82F6", // Accent color provided
+                        "outline": "#8c909f",
+                        "on-primary": "#ffffff", // changed for better contrast with primary
+                        "inverse-on-surface": "#2f3035",
+                        "on-secondary-container": "#b3b5be",
+                        "success": "#10B981",
+                        "primary-fixed": "#d8e2ff",
+                        "on-background": "#e2e2e8",
+                        "on-surface": "#e2e2e8",
+                        "danger": "#EF4444",
+                        "warning": "#F59E0B",
+                        "surface-tint": "#adc6ff",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-tertiary-container": "#461f00",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#111317",
+                        "surface-container-lowest": "#0c0e12",
+                        "surface-variant": "#333539",
+                        "border-subtle": "#262B36",
+                        "outline-variant": "#424754",
+                        "surface-container-low": "#1a1c20",
+                        "secondary": "#c4c6d0",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "on-primary-fixed": "#001a42",
+                        "app-bg": "#0F1115"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-right": "300px",
+                        "gutter-lg": "16px",
+                        "topbar-height": "56px",
+                        "panel-gap": "1px",
+                        "sidebar-left": "240px",
+                        "gutter-md": "12px",
+                        "container-margin": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter", "sans-serif"],
+                        "body-base": ["Inter", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "mono-label": ["Inter", "monospace"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "mono-label": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.app-bg'); color: theme('colors.text-primary'); }
+        /* Gizmo animations */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+        .gizmo-ring { animation: pulse-ring 2s infinite ease-in-out; }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex flex-col font-body-base bg-app-bg text-text-primary">
+<!-- TOP BAR -->
+<header class="flex justify-between items-center w-full px-gutter-lg max-w-full h-topbar-height bg-surface-container border-b border-border-subtle shrink-0">
+<!-- Left: Back Arrow + Title -->
+<div class="flex items-center gap-4">
+<button class="p-1 rounded hover:bg-surface-container-high transition-colors text-text-secondary hover:text-primary">
+<span class="material-symbols-outlined text-xl">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<h1 class="font-headline-md text-headline-md text-text-primary tracking-tight">villa-27.ifc</h1>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high border border-border-subtle text-text-secondary">IFC</span>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-3">
+<button class="px-3 py-1.5 rounded text-body-sm font-body-sm border border-border-subtle text-text-primary hover:bg-surface-container-high hover:text-primary transition-colors">
+                Load
+            </button>
+<button class="px-3 py-1.5 rounded text-body-sm font-body-sm border border-border-subtle text-text-primary hover:bg-surface-container-high hover:text-primary transition-colors">
+                Save design
+            </button>
+<button class="px-4 py-1.5 rounded bg-primary text-on-primary text-body-sm font-body-sm font-medium hover:bg-blue-600 transition-colors flex items-center gap-1 shadow-[0_0_10px_rgba(59,130,246,0.3)]">
+                AI Optimize
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</button>
+<button class="p-1.5 rounded text-text-secondary hover:text-primary hover:bg-surface-container-high transition-colors ml-1">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- MAIN WORKSPACE -->
+<main class="flex flex-1 overflow-hidden h-[calc(100vh-56px)]">
+<!-- LEFT SIDEBAR -->
+<aside class="w-sidebar-left h-full bg-surface-container border-r border-border-subtle flex flex-col shrink-0">
+<!-- Rooms List -->
+<div class="p-gutter-md">
+<h2 class="font-label-caps text-label-caps text-text-secondary mb-3 px-2">ROOMS</h2>
+<ul class="flex flex-col gap-1">
+<li>
+<button class="w-full text-left px-3 py-1.5 rounded-sm flex items-center gap-2 text-body-sm font-body-sm border-l-2 border-primary bg-surface-container-high text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chair</span>
+                            Living Room
+                        </button>
+</li>
+<li>
+<button class="w-full text-left px-3 py-1.5 rounded-sm flex items-center gap-2 text-body-sm font-body-sm text-text-secondary hover:bg-surface-container-highest hover:text-text-primary border-l-2 border-transparent transition-all">
+<span class="material-symbols-outlined text-sm">countertops</span>
+                            Kitchen
+                        </button>
+</li>
+<li>
+<button class="w-full text-left px-3 py-1.5 rounded-sm flex items-center gap-2 text-body-sm font-body-sm text-text-secondary hover:bg-surface-container-highest hover:text-text-primary border-l-2 border-transparent transition-all">
+<span class="material-symbols-outlined text-sm">bed</span>
+                            Bedroom 1
+                        </button>
+</li>
+<li>
+<button class="w-full text-left px-3 py-1.5 rounded-sm flex items-center gap-2 text-body-sm font-body-sm text-text-secondary hover:bg-surface-container-highest hover:text-text-primary border-l-2 border-transparent transition-all">
+<span class="material-symbols-outlined text-sm">bed</span>
+                            Bedroom 2
+                        </button>
+</li>
+<li>
+<button class="w-full text-left px-3 py-1.5 rounded-sm flex items-center gap-2 text-body-sm font-body-sm text-text-secondary hover:bg-surface-container-highest hover:text-text-primary border-l-2 border-transparent transition-all">
+<span class="material-symbols-outlined text-sm">bathtub</span>
+                            Bath
+                        </button>
+</li>
+</ul>
+</div>
+<div class="h-px bg-border-subtle w-full my-2"></div>
+<!-- Design List -->
+<div class="p-gutter-md flex-1 overflow-y-auto">
+<h2 class="font-label-caps text-label-caps text-text-secondary mb-3 px-2">DESIGN</h2>
+<ul class="flex flex-col gap-1">
+<li>
+<button class="w-full text-left px-3 py-1.5 rounded-sm flex items-center gap-2 text-body-sm font-body-sm text-text-secondary hover:bg-surface-container-highest hover:text-text-primary border-l-2 border-transparent transition-all">
+<span class="material-symbols-outlined text-sm">category</span>
+                            Placed items (12)
+                        </button>
+</li>
+<li>
+<button class="w-full text-left px-3 py-1.5 rounded-sm flex items-center gap-2 text-body-sm font-body-sm text-text-secondary hover:bg-surface-container-highest hover:text-text-primary border-l-2 border-transparent transition-all">
+<span class="material-symbols-outlined text-sm">format_paint</span>
+                            Finishes
+                        </button>
+</li>
+</ul>
+</div>
+</aside>
+<!-- CENTER VIEWPORT -->
+<section class="flex-1 bg-viewport-bg relative overflow-hidden flex flex-col items-center justify-center">
+<!-- 3D Render Background (Simulated) -->
+<div class="absolute inset-0 w-full h-full" data-alt="A highly realistic, photorealist 3D architectural render of a modern, minimalist living room. The room features dark moody lighting, subtle ambient occlusion, and sharp shadows. The aesthetic is 'Modern Corporate' interior design, prioritizing focus and precision. A prominent 'Oslo Sofa' in a Japandi style sits in the center. The background should feel like a premium tool-grade 3D workspace. Color palette leans towards deep blacks, pristine whites, and subtle grey tonal layering." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAa9jsshO5haECzBDYSMZHZMjhG10laAj1Y9E-IIdNQGjEoVopgE6oi1AtrjKb1Bv2p_ax9YNb_6QXK3PPNQy5UhumylTb7aPAtEKsfDlbqnigqwq7-V4nEgttjZRaU_N-GZHNADobXzas_aZu-j4eCup_Y-ccnv6Kg2WT-kJ1t7fWhdLSpStmQSmC5yuyyZ5qYQg1QG9G1_G35M6iadQ-ZOuxmURq6ndy2ozX3CIvuDPvABG_5b2Wmwg')"></div>
+<!-- Simulated Selected Object (Oslo Sofa Outline) -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-32 border border-primary rounded shadow-[0_0_15px_rgba(59,130,246,0.3)] bg-primary/5 flex items-center justify-center cursor-move">
+<!-- Gizmo Hint -->
+<div class="relative w-16 h-16 pointer-events-none">
+<!-- Y Axis -->
+<div class="absolute bottom-1/2 left-1/2 w-0.5 h-10 bg-success transform -translate-x-1/2 origin-bottom">
+<div class="absolute -top-1 left-1/2 w-2 h-2 bg-success rounded-full transform -translate-x-1/2"></div>
+</div>
+<!-- X Axis -->
+<div class="absolute top-1/2 left-1/2 h-0.5 w-10 bg-danger transform -translate-y-1/2 origin-left">
+<div class="absolute top-1/2 -right-1 w-2 h-2 bg-danger rounded-full transform -translate-y-1/2"></div>
+</div>
+<!-- Z Axis -->
+<div class="absolute top-1/2 left-1/2 h-0.5 w-8 bg-primary transform -translate-y-1/2 -rotate-45 origin-left opacity-80"></div>
+<!-- Center Point -->
+<div class="absolute top-1/2 left-1/2 w-2 h-2 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+<!-- Rotation Ring -->
+<svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 text-warning opacity-70 gizmo-ring" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="48" stroke="currentColor" stroke-dasharray="10 5" stroke-width="2"></circle>
+</svg>
+</div>
+</div>
+<!-- Floating Top Toolbar -->
+<div class="absolute top-4 left-1/2 transform -translate-x-1/2 flex items-center gap-1 bg-surface-container/80 backdrop-blur-md border border-border-subtle rounded-full px-2 py-1 shadow-lg z-10">
+<button class="p-2 rounded-full text-text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Orbit">
+<span class="material-symbols-outlined text-sm">360</span>
+</button>
+<button class="p-2 rounded-full text-text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Walkthrough">
+<span class="material-symbols-outlined text-sm">directions_walk</span>
+</button>
+<div class="w-px h-4 bg-border-subtle mx-1"></div>
+<button class="p-2 rounded-full text-text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Undo">
+<span class="material-symbols-outlined text-sm">undo</span>
+</button>
+<button class="p-2 rounded-full text-text-secondary hover:text-primary hover:bg-surface-container transition-colors" title="Redo">
+<span class="material-symbols-outlined text-sm">redo</span>
+</button>
+</div>
+<!-- Bottom Left Chip -->
+<div class="absolute bottom-4 left-4 bg-surface-container/80 backdrop-blur-md border border-border-subtle rounded px-3 py-1.5 shadow-lg z-10">
+<span class="text-label-sm font-label-sm text-text-secondary">Click floor to place · Shift = free move</span>
+</div>
+<!-- Bottom Right Controls -->
+<div class="absolute bottom-4 right-4 flex items-center gap-3 z-10">
+<div class="flex items-center gap-1 bg-surface-container/80 backdrop-blur-md border border-border-subtle rounded px-2 py-1 shadow-lg">
+<button class="p-1 rounded text-text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-mono-label font-mono-label text-text-primary px-2">100%</span>
+<button class="p-1 rounded text-text-secondary hover:text-primary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="bg-surface-container/80 backdrop-blur-md border border-border-subtle rounded px-2 py-1 shadow-lg">
+<span class="text-mono-label font-mono-label text-text-secondary">60 fps</span>
+</div>
+</div>
+</section>
+<!-- RIGHT SIDEBAR (INSPECTOR) -->
+<aside class="w-sidebar-right h-full bg-surface-container border-l border-border-subtle flex flex-col shrink-0">
+<!-- Inspector Header -->
+<div class="flex items-center justify-between p-3 border-b border-border-subtle bg-surface-container">
+<div class="flex flex-col">
+<div class="flex items-center text-label-sm font-label-sm text-text-secondary gap-1">
+<span>Living Room</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-text-primary font-medium">Oslo Sofa</span>
+</div>
+</div>
+<button class="p-1 rounded text-text-secondary hover:bg-surface-container-highest hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Inspector Content -->
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-6">
+<!-- Selected Item Card -->
+<div class="rounded-lg border border-border-subtle bg-surface p-3 flex gap-4 items-center group hover:border-primary transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded bg-viewport-bg flex items-center justify-center shrink-0 border border-border-subtle overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A clean, isolated 3D render thumbnail of a modern, Japandi style 'Oslo Sofa' against a transparent or very dark studio background. The sofa should look plush yet structured, with neutral upholstery. High contrast, technical tool-grade lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVznYPKV1YsXbpTvJxDsRLMmnbKlpPJHgb05RoaJTvhZK9uW0ymbIL9HKHGp3JJLnX_U2XmZgyrOGcjAPdBLy3N4_T1oibT7xa0R_KkeN_FqM6vuHnarWyZ0qNDnul42NdlXd3yBUtM6P-02gqVTZHXLDiur2O8D8iBDKxh_uZQax0EK8Sv8G6CUi_PV7aUb3wPz1KjV14maYQmMor1x98MTrxq95DaVkRORe1nnm0PYwgF1CBkZkz8g"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-base text-body-base text-text-primary font-medium">Oslo Sofa</span>
+<span class="mt-1 inline-block px-2 py-0.5 rounded-full bg-surface-container-high border border-border-subtle text-[10px] font-label-caps text-text-secondary w-max">JAPANDI</span>
+</div>
+</div>
+<!-- Transform Group -->
+<div class="flex flex-col gap-4">
+<h3 class="font-label-caps text-label-caps text-text-secondary px-1 border-b border-border-subtle pb-2">TRANSFORM</h3>
+<!-- Position -->
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-text-secondary">Position</span>
+<div class="flex gap-2">
+<div class="flex-1 relative">
+<label class="absolute left-2 top-1/2 -translate-y-1/2 font-mono-label text-mono-label text-danger">X</label>
+<input class="w-full bg-surface border border-border-subtle rounded-md py-1.5 pl-6 pr-2 text-body-sm font-body-sm text-text-primary focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" type="text" value="2.45m"/>
+</div>
+<div class="flex-1 relative">
+<label class="absolute left-2 top-1/2 -translate-y-1/2 font-mono-label text-mono-label text-primary">Z</label>
+<input class="w-full bg-surface border border-border-subtle rounded-md py-1.5 pl-6 pr-2 text-body-sm font-body-sm text-text-primary focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors" type="text" value="-1.20m"/>
+</div>
+</div>
+</div>
+<!-- Rotation -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-text-secondary">Rotation (Y)</span>
+<span class="font-mono-label text-mono-label text-text-primary">90°</span>
+</div>
+<div class="relative w-full h-8 flex items-center">
+<!-- Track -->
+<div class="absolute w-full h-1 bg-border-subtle rounded-full"></div>
+<!-- Fill -->
+<div class="absolute w-1/4 h-1 bg-primary rounded-full left-1/4"></div>
+<!-- Thumb -->
+<div class="absolute w-3 h-3 bg-white rounded-full shadow left-1/2 transform -translate-x-1/2 cursor-ew-resize border border-primary"></div>
+<!-- Ticks -->
+<div class="absolute w-full flex justify-between px-1 pointer-events-none opacity-30 mt-4">
+<div class="w-px h-1 bg-white"></div>
+<div class="w-px h-1 bg-white"></div>
+<div class="w-px h-1 bg-white"></div>
+<div class="w-px h-1 bg-white"></div>
+<div class="w-px h-1 bg-white"></div>
+</div>
+</div>
+</div>
+<!-- Toggle Snap -->
+<div class="flex items-center justify-between mt-2 py-2 px-1 rounded hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="font-body-sm text-body-sm text-text-primary">Snap to grid</span>
+<!-- Custom Toggle Switch (ON state) -->
+<div class="w-8 h-4 bg-primary rounded-full relative transition-colors">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full shadow-sm transition-transform"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Inspector Bottom Action -->
+<div class="p-4 border-t border-border-subtle mt-auto">
+<button class="w-full py-2 flex items-center justify-center gap-2 rounded text-body-sm font-body-sm text-danger hover:bg-danger/10 border border-transparent hover:border-danger/30 transition-colors">
+<span class="material-symbols-outlined text-sm">delete</span>
+                    Remove item
+                </button>
+</div>
+</aside>
+</main>
+</body></html>

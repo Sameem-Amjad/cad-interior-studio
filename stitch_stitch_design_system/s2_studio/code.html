@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S2 - Studio (Main Interface)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#adc6ff",
+                        "inverse-on-surface": "#2f3035",
+                        "warning": "#F59E0B",
+                        "primary": "#adc6ff",
+                        "surface": "#111317",
+                        "on-primary-container": "#00285d",
+                        "surface-dim": "#111317",
+                        "on-primary-fixed": "#001a42",
+                        "viewport-bg": "#0B0D10",
+                        "tertiary-container": "#df7412",
+                        "surface-variant": "#333539",
+                        "on-tertiary-container": "#461f00",
+                        "on-secondary": "#2d3038",
+                        "on-secondary-container": "#b3b5be",
+                        "danger": "#EF4444",
+                        "on-surface-variant": "#c2c6d6",
+                        "text-primary": "#E8EAF0",
+                        "on-surface": "#e2e2e8",
+                        "inverse-primary": "#005ac2",
+                        "surface-container": "#1e2024",
+                        "surface-container-high": "#282a2e",
+                        "on-tertiary-fixed": "#311400",
+                        "success": "#10B981",
+                        "on-primary": "#002e6a",
+                        "primary-fixed": "#d8e2ff",
+                        "background": "#111317",
+                        "primary-container": "#4d8eff",
+                        "secondary-fixed-dim": "#c4c6d0",
+                        "surface-container-highest": "#333539",
+                        "surface-bright": "#37393e",
+                        "border-subtle": "#262B36",
+                        "on-background": "#e2e2e8",
+                        "text-secondary": "#8A93A6",
+                        "inverse-surface": "#e2e2e8",
+                        "secondary": "#c4c6d0",
+                        "on-secondary-fixed-variant": "#44474f",
+                        "secondary-container": "#44474f",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed": "#ffdcc6",
+                        "surface-container-low": "#1a1c20",
+                        "surface-container-lowest": "#0c0e12",
+                        "outline": "#8c909f",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary": "#ffb786",
+                        "outline-variant": "#424754",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#502400",
+                        "tertiary-fixed-dim": "#ffb786",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#191c23",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#e0e2ec"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-right": "300px",
+                        "panel-gap": "1px",
+                        "gutter-md": "12px",
+                        "sidebar-left": "240px",
+                        "gutter-lg": "16px",
+                        "topbar-height": "56px",
+                        "container-margin": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "mono-label": ["Inter"],
+                        "body-base": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "mono-label": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0F1115; color: #E8EAF0; margin: 0; padding: 0; overflow: hidden; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #262B36; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #333539; }
+    </style>
+</head>
+<body class="font-body-base text-body-base flex flex-col h-screen w-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Shared Component JSON Blueprint + Intent: Main 3D Workspace) -->
+<header class="flex justify-between items-center px-gutter-lg w-full fixed top-0 z-50 h-[56px] border-b border-border-subtle bg-surface dark:bg-surface">
+<div class="flex items-center gap-4">
+<button class="p-2 -ml-2 rounded text-on-surface-variant hover:bg-surface-variant transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-text-primary dark:text-text-primary tracking-tight">StudioPro 3D</span>
+<span class="text-on-surface-variant px-2">|</span>
+<span class="font-body-base text-body-base text-text-primary">villa-27.ifc</span>
+<span class="bg-surface-variant text-on-surface-variant px-1.5 py-0.5 rounded font-label-sm text-label-sm">IFC</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<!-- Navigation Links (Empty in JSON, but standard secondary actions here) -->
+<button class="px-3 py-1.5 rounded font-body-sm text-body-sm text-on-surface hover:bg-surface-variant transition-colors">Save design</button>
+<button class="px-3 py-1.5 rounded font-body-sm text-body-sm text-on-surface hover:bg-surface-variant transition-colors">Load</button>
+<!-- Trailing Primary Action -->
+<button class="bg-primary-container text-on-primary-container hover:bg-primary transition-colors px-4 py-1.5 rounded-md font-body-sm text-body-sm font-medium flex items-center gap-1.5 ml-2 cursor-pointer active:opacity-80">
+                AI Optimize
+                <span class="material-symbols-outlined text-[16px]" data-icon="auto_awesome">auto_awesome</span>
+</button>
+<!-- Trailing Icon Actions -->
+<div class="flex items-center ml-2 border-l border-border-subtle pl-2 gap-1">
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="folder_open">folder_open</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant transition-colors ml-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Workspace Area -->
+<main class="flex-1 flex mt-[56px] h-[calc(100vh-56px)] overflow-hidden">
+<!-- Left Sidebar (Rooms & Design Hierarchy) -->
+<aside class="w-sidebar-left h-full border-r border-border-subtle bg-surface-container flex flex-col z-40 shrink-0">
+<!-- ROOMS Section -->
+<div class="flex-1 overflow-y-auto p-3">
+<h3 class="font-label-caps text-label-caps text-text-secondary uppercase mb-2 px-3">ROOMS</h3>
+<ul class="space-y-0.5">
+<!-- Active List Item -->
+<li class="flex items-center justify-between px-3 py-1.5 bg-surface-container-highest rounded border-l-2 border-primary group cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="chair">chair</span>
+<span class="font-body-sm text-body-sm text-primary font-medium">Living Room</span>
+</div>
+<span class="bg-surface-variant text-text-secondary px-1.5 py-0.5 rounded text-[10px] font-mono">4</span>
+</li>
+<li class="flex items-center justify-between px-3 py-1.5 rounded hover:bg-surface-container-highest transition-colors group border-l-2 border-transparent cursor-pointer pl-[14px]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-text-primary text-[18px]" data-icon="countertops">countertops</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-text-primary">Kitchen</span>
+</div>
+</li>
+<li class="flex items-center justify-between px-3 py-1.5 rounded hover:bg-surface-container-highest transition-colors group border-l-2 border-transparent cursor-pointer pl-[14px]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-text-primary text-[18px]" data-icon="bed">bed</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-text-primary">Bedroom 1</span>
+</div>
+</li>
+<li class="flex items-center justify-between px-3 py-1.5 rounded hover:bg-surface-container-highest transition-colors group border-l-2 border-transparent cursor-pointer pl-[14px]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-text-primary text-[18px]" data-icon="bed">bed</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-text-primary">Bedroom 2</span>
+</div>
+</li>
+<li class="flex items-center justify-between px-3 py-1.5 rounded hover:bg-surface-container-highest transition-colors group border-l-2 border-transparent cursor-pointer pl-[14px]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-text-primary text-[18px]" data-icon="bathtub">bathtub</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-text-primary">Bath</span>
+</div>
+</li>
+</ul>
+<hr class="border-border-subtle my-4 mx-3"/>
+<!-- DESIGN Section -->
+<h3 class="font-label-caps text-label-caps text-text-secondary uppercase mb-2 px-3">DESIGN</h3>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-3 py-1.5 rounded hover:bg-surface-container-highest text-on-surface-variant hover:text-text-primary transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+<span class="font-body-sm text-body-sm">Placed items (12)</span>
+</div>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-1.5 rounded hover:bg-surface-container-highest text-on-surface-variant hover:text-text-primary transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="font-body-sm text-body-sm">Finishes</span>
+</div>
+</button>
+</div>
+</div>
+</aside>
+<!-- Center Viewport (3D Area) -->
+<section class="flex-1 relative bg-viewport-bg overflow-hidden flex flex-col items-center justify-center">
+<!-- Placeholder 3D Background -->
+<div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-60 mix-blend-lighten pointer-events-none" data-alt="A highly realistic 3D architectural rendering of a modern minimalist living room, seen from a neutral perspective. The scene is illuminated by soft, natural studio lighting with subtle ambient shadows. The dominant colors are deep charcoal, off-white, and warm wood tones. A sleek grey modern sofa, a textured rug, and an elegant floor lamp are visible. The overall aesthetic is clean, professional, and tool-grade dark mode interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjVIjEukYgK9JpZQ9sMNm4AkkTFp31MvYTDYScKpjbZLTezEUDDrRFzKT0YxhKd4ZAbIVXLFL4kc22vuQ-DOnewOu-8bC_HSRTC7-uunuK6M0wT-Wb5aFl86Hs7c8jpuizRomijFpPV4hGzaYmAIBVxFBtt2oU00e59vAkpCh-xZ5Gud3wFSHQjVBewQmamMoAzHmuPOkcQJ4Y7ObLasLPPr73B2_K5ygGcKW4U0ol4Vx0lHNQKviPCQ')"></div>
+<!-- Top Floating Toolbar (Glassmorphism) -->
+<div class="absolute top-4 flex items-center bg-surface-container/80 backdrop-blur-md border border-border-subtle rounded-full px-2 py-1.5 gap-1 shadow-lg z-10">
+<button class="p-1.5 rounded-full bg-primary/20 text-primary border border-primary/30 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="360" data-weight="fill">360</span>
+</button>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:bg-surface-variant hover:text-text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="directions_walk">directions_walk</span>
+</button>
+<div class="w-[1px] h-4 bg-border-subtle mx-1"></div>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:bg-surface-variant hover:text-text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="undo">undo</span>
+</button>
+<button class="p-1.5 rounded-full text-on-surface-variant hover:bg-surface-variant hover:text-text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="redo">redo</span>
+</button>
+</div>
+<!-- Bottom Left Helper Chip -->
+<div class="absolute bottom-4 left-4 bg-surface-container/60 backdrop-blur-sm border border-border-subtle rounded-full px-3 py-1.5 flex items-center gap-2 shadow-sm z-10 pointer-events-none">
+<span class="material-symbols-outlined text-[14px] text-text-secondary" data-icon="info">info</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Click floor to place · Shift = free move</span>
+</div>
+<!-- Bottom Right View Controls -->
+<div class="absolute bottom-4 right-4 flex items-center gap-3 z-10">
+<div class="bg-surface-container/60 backdrop-blur-sm border border-border-subtle rounded px-2 py-1 font-mono-label text-mono-label text-text-secondary">
+                    60 fps
+                </div>
+<div class="flex bg-surface-container/80 backdrop-blur-md border border-border-subtle rounded overflow-hidden shadow-sm">
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-variant hover:text-text-primary transition-colors border-r border-border-subtle cursor-pointer">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-variant hover:text-text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Sidebar (Catalog & Properties) -->
+<aside class="w-sidebar-right h-full border-l border-border-subtle bg-surface-container flex flex-col z-40 shrink-0">
+<!-- Tabs Header -->
+<div class="flex border-b border-border-subtle px-4 pt-2">
+<button class="pb-2 px-2 font-body-sm text-body-sm font-medium text-primary border-b-2 border-primary">
+                    Catalog
+                </button>
+<button class="pb-2 px-2 font-body-sm text-body-sm text-on-surface-variant hover:text-text-primary transition-colors ml-4 border-b-2 border-transparent">
+                    Style
+                </button>
+</div>
+<div class="flex-1 overflow-y-auto p-gutter-lg flex flex-col gap-4">
+<!-- Search Input -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-2.5 top-1.5 text-text-secondary text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface-dim border border-border-subtle rounded-md pl-9 pr-3 py-1.5 text-body-sm text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-primary transition-colors" placeholder="Search products..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+<button class="shrink-0 px-3 py-1 bg-surface-variant text-text-primary rounded-full font-label-sm text-label-sm border border-border-subtle hover:bg-surface-bright transition-colors cursor-pointer">All</button>
+<button class="shrink-0 px-3 py-1 bg-surface-container text-on-surface-variant rounded-full font-label-sm text-label-sm border border-border-subtle hover:bg-surface-variant transition-colors cursor-pointer">Sofas</button>
+<button class="shrink-0 px-3 py-1 bg-surface-container text-on-surface-variant rounded-full font-label-sm text-label-sm border border-border-subtle hover:bg-surface-variant transition-colors cursor-pointer">Tables</button>
+<button class="shrink-0 px-3 py-1 bg-surface-container text-on-surface-variant rounded-full font-label-sm text-label-sm border border-border-subtle hover:bg-surface-variant transition-colors cursor-pointer">Lighting</button>
+</div>
+<!-- Catalog Grid -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Active Card (Placing) -->
+<div class="bg-surface rounded-lg border border-primary p-2 flex flex-col gap-2 cursor-pointer relative">
+<div class="absolute -top-1.5 -right-1.5 bg-primary text-on-primary-container rounded-full p-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="add" data-weight="fill">add</span>
+</div>
+<div class="aspect-square bg-surface-container-low rounded-md overflow-hidden relative flex items-center justify-center">
+<img class="object-contain w-full h-full p-2" data-alt="A clean 3D render thumbnail of a minimalist grey fabric sofa on a transparent or neutral dark background, isolated for a catalog view. High professional quality lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8sGMV-Z4LcZNxXOWFP8QU2JhZzR4O6P9DqyWNQLd4VcrdMs2r3xTAjDrAYbRzsZz3vn5pEGWOjkQ086KqNn1b-d7YoHOYdBEV6F1J6dD2EP6MH45l_RrYCQG4Re0gsp2wQy8E3v522dbZ8Svj3E35P4LZWKCeaXIHdR3W0qK9aavIbmkPBCJwiUEAMr1MT_h9xm3vqX7nplGQFdBj7YyHj6D1RYBGYGvZbmkWMr633mNNwcKIXcPTDg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-text-primary font-medium truncate">Oslo Sofa</span>
+<span class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">Japandi</span>
+</div>
+</div>
+<!-- Standard Card -->
+<div class="bg-surface rounded-lg border border-border-subtle hover:border-primary/50 transition-colors p-2 flex flex-col gap-2 cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-md overflow-hidden relative flex items-center justify-center">
+<img class="object-contain w-full h-full p-2" data-alt="A clean 3D render thumbnail of a modern circular wooden coffee table on a transparent or neutral dark background, isolated for a catalog view. High professional quality lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXnGHXRNWHwJ8_E_bZ0FvhIfBdJOa6yO5LFyyg8Vm3dwdOTJmXSzku8NkUAw0W2EioIgqnrH6KabyJOBYEXiNvEabAQb9U-ibs12NJ6s4jRlARfcFv94aoKmpPY6I87PNoQ_BCgJrHMLX46banxbzKAjaJ1NVKnIVyO3G1UFf3Rwi9p9ewi9-C7Y8Zf7J3Jl_cSSdI_W_DCZmChHV3JqxT2fNoDJyYiHX1XnZwuzY1M86KC0UaQRiv5w"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-text-primary font-medium truncate">Nora Table</span>
+<span class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">Minimalist</span>
+</div>
+</div>
+<!-- Standard Card -->
+<div class="bg-surface rounded-lg border border-border-subtle hover:border-primary/50 transition-colors p-2 flex flex-col gap-2 cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-md overflow-hidden relative flex items-center justify-center">
+<img class="object-contain w-full h-full p-2" data-alt="A clean 3D render thumbnail of a sleek black arched floor lamp on a transparent or neutral dark background, isolated for a catalog view. High professional quality lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuCDgiM2QxG_3nDGmJB5T9P5wo6myqdLAw6HKA_vwhTH5DmVJb8aR5gRN3W0QIy0KvNmIwyJOVvXADdTyxKSs_LdTFwA8fUckgDrjgvGJII9CDyvp11d4SU-kfriNtw4-Ikh8gv3Yvm9vPBj92Lgk3QSH5_Yk_fbSqH0guupc1v6NTF5o50QneYnCXZbMf6h5V2YaETTlb1r74rd9s825Lzi6tPSJdzBWvwMjf4N7NBr7BNsq5KcvWzQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-text-primary font-medium truncate">Arc Lamp</span>
+<span class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">Industrial</span>
+</div>
+</div>
+<!-- Standard Card -->
+<div class="bg-surface rounded-lg border border-border-subtle hover:border-primary/50 transition-colors p-2 flex flex-col gap-2 cursor-pointer">
+<div class="aspect-square bg-surface-container-low rounded-md overflow-hidden relative flex items-center justify-center">
+<img class="object-contain w-full h-full p-2" data-alt="A clean 3D render thumbnail of a modern abstract textured rug on a transparent or neutral dark background, isolated for a catalog view. High professional quality lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEQHs-D6VhN0aCk27iXoeOMY4NnlRRtbsEYZkoDxWSa9tXrb_aWhY4QwZdx875bJKYDkyxbzkDfZWFKu3yFYSeeQTUdsza6dpaBlxRur-KmVsCSjHEuDA5ltWIWydYI3sExEc2VGs3YQSFgP2AekDYzmv1gGYY3jf6NLVlOt44D6c5ewTXR0UaU_82HYQAlMzlwSSBx0ndPbslIC-2x8uUQ8ZpU2KYeOHDRxFkF9hrhnWNKgJOLNh3Ew"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-text-primary font-medium truncate">Beni Rug</span>
+<span class="font-label-sm text-label-sm text-text-secondary truncate mt-0.5">Textured</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

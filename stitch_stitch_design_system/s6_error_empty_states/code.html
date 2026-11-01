@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Error &amp; Empty States</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#002e6a",
+                        "background": "#111317",
+                        "viewport-bg": "#0B0D10",
+                        "on-tertiary-container": "#461f00",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-dim": "#111317",
+                        "surface-tint": "#adc6ff",
+                        "on-surface": "#e2e2e8",
+                        "inverse-primary": "#005ac2",
+                        "inverse-on-surface": "#2f3035",
+                        "tertiary-fixed": "#ffdcc6",
+                        "success": "#10B981",
+                        "inverse-surface": "#e2e2e8",
+                        "border-subtle": "#262B36",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-background": "#e2e2e8",
+                        "tertiary-container": "#df7412",
+                        "primary": "#adc6ff",
+                        "warning": "#F59E0B",
+                        "danger": "#EF4444",
+                        "on-secondary-fixed-variant": "#44474f",
+                        "surface-container-lowest": "#0c0e12",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface": "#111317",
+                        "secondary-fixed-dim": "#c4c6d0",
+                        "surface-variant": "#333539",
+                        "surface-container-highest": "#333539",
+                        "surface-container-low": "#1a1c20",
+                        "primary-container": "#4d8eff",
+                        "tertiary": "#ffb786",
+                        "on-primary-container": "#00285d",
+                        "outline-variant": "#424754",
+                        "secondary-container": "#44474f",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#b3b5be",
+                        "secondary-fixed": "#e0e2ec",
+                        "surface-container": "#1e2024",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#311400",
+                        "on-secondary": "#2d3038",
+                        "surface-bright": "#37393e",
+                        "text-primary": "#E8EAF0",
+                        "on-error-container": "#ffdad6",
+                        "text-secondary": "#8A93A6",
+                        "surface-container-high": "#282a2e",
+                        "secondary": "#c4c6d0",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary": "#502400",
+                        "on-secondary-fixed": "#191c23",
+                        "error": "#ffb4ab",
+                        "outline": "#8c909f",
+                        "tertiary-fixed-dim": "#ffb786"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1rem",
+                        "gutter-lg": "16px",
+                        "sidebar-left": "240px",
+                        "topbar-height": "56px",
+                        "sidebar-right": "300px",
+                        "panel-gap": "1px",
+                        "gutter-md": "12px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "mono-label": ["Inter"],
+                        "body-base": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "mono-label": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F1115; /* Specific requested background, overriding token for body only */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-8 text-on-surface antialiased">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl w-full">
+<!-- 1) Error Toast -->
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-text-secondary mb-4 opacity-50 uppercase tracking-wider">01 / Error Toast</span>
+<div class="flex items-start gap-4 p-4 rounded-lg border border-danger bg-surface w-full max-w-md shadow-sm">
+<span class="material-symbols-outlined text-danger mt-0.5" style="font-variation-settings: 'FILL' 0, 'wght' 300;">error</span>
+<div class="flex flex-col gap-1.5">
+<span class="font-body-base text-body-base text-text-primary">Couldn't read this file — is it a valid IFC?</span>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed transition-colors" href="#">Try sample building</a>
+</div>
+</div>
+</div>
+<!-- 2) Warning Toast -->
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-text-secondary mb-4 opacity-50 uppercase tracking-wider">02 / Warning Toast</span>
+<div class="flex items-start gap-4 p-4 rounded-lg border border-warning bg-surface w-full max-w-md shadow-sm">
+<span class="material-symbols-outlined text-warning mt-0.5" style="font-variation-settings: 'FILL' 0, 'wght' 300;">warning</span>
+<span class="font-body-base text-body-base text-text-primary pt-0.5">This IFC has no room data — showing whole floors instead.</span>
+</div>
+</div>
+<!-- 3) AI Failure Card -->
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-text-secondary mb-4 opacity-50 uppercase tracking-wider">03 / AI Failure Card</span>
+<div class="flex flex-col items-center justify-center p-8 rounded-lg border border-subtle bg-surface w-full max-w-md text-center gap-6 shadow-sm">
+<div class="p-3 rounded-full bg-surface-container-high border border-subtle">
+<span class="material-symbols-outlined text-danger" style="font-size: 32px; font-variation-settings: 'FILL' 0, 'wght' 200;">smart_toy</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-md text-headline-md text-text-primary">Concept generation failed.</h3>
+<p class="font-body-base text-body-base text-text-secondary">Your design is safe.</p>
+</div>
+<button class="px-6 py-2.5 mt-2 bg-transparent border border-subtle rounded-lg font-label-caps text-label-caps text-text-primary hover:border-primary hover:text-primary transition-all duration-200">
+                    Retry
+                </button>
+</div>
+</div>
+<!-- 4) Empty Search State -->
+<div class="flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-text-secondary mb-4 opacity-50 uppercase tracking-wider">04 / Empty Search State</span>
+<div class="flex flex-col items-center justify-center p-12 w-full max-w-md text-center gap-4 h-full border border-subtle border-dashed rounded-lg bg-surface-container-lowest">
+<span class="material-symbols-outlined text-outline-variant mb-2" style="font-size: 48px; font-variation-settings: 'FILL' 0, 'wght' 200;">search</span>
+<span class="font-body-base text-body-base text-text-secondary">No items match — try 'sofa'</span>
+</div>
+</div>
+</div>
+</body></html>

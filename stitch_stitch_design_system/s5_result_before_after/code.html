@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio PoC - Result</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#002e6a",
+                        "background": "#111317",
+                        "viewport-bg": "#0B0D10",
+                        "on-tertiary-container": "#461f00",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-dim": "#111317",
+                        "surface-tint": "#adc6ff",
+                        "on-surface": "#e2e2e8",
+                        "inverse-primary": "#005ac2",
+                        "inverse-on-surface": "#2f3035",
+                        "tertiary-fixed": "#ffdcc6",
+                        "success": "#10B981",
+                        "inverse-surface": "#e2e2e8",
+                        "border-subtle": "#262B36",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-background": "#e2e2e8",
+                        "tertiary-container": "#df7412",
+                        "primary": "#adc6ff",
+                        "warning": "#F59E0B",
+                        "danger": "#EF4444",
+                        "on-secondary-fixed-variant": "#44474f",
+                        "surface-container-lowest": "#0c0e12",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface": "#111317",
+                        "secondary-fixed-dim": "#c4c6d0",
+                        "surface-variant": "#333539",
+                        "surface-container-highest": "#333539",
+                        "surface-container-low": "#1a1c20",
+                        "primary-container": "#4d8eff",
+                        "tertiary": "#ffb786",
+                        "on-primary-container": "#00285d",
+                        "outline-variant": "#424754",
+                        "secondary-container": "#44474f",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#b3b5be",
+                        "secondary-fixed": "#e0e2ec",
+                        "surface-container": "#1e2024",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#311400",
+                        "on-secondary": "#2d3038",
+                        "surface-bright": "#37393e",
+                        "text-primary": "#E8EAF0",
+                        "on-error-container": "#ffdad6",
+                        "text-secondary": "#8A93A6",
+                        "surface-container-high": "#282a2e",
+                        "secondary": "#c4c6d0",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary": "#502400",
+                        "on-secondary-fixed": "#191c23",
+                        "error": "#ffb4ab",
+                        "outline": "#8c909f",
+                        "tertiary-fixed-dim": "#ffb786"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "container-margin": "1rem",
+                        "gutter-lg": "16px",
+                        "sidebar-left": "240px",
+                        "topbar-height": "56px",
+                        "sidebar-right": "300px",
+                        "panel-gap": "1px",
+                        "gutter-md": "12px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Inter"],
+                        "mono-label": ["Inter"],
+                        "body-base": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }],
+                        "mono-label": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "body-base": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #333539;
+            border-radius: 9999px;
+        }
+        
+        #ba-container {
+            --pos: 50%;
+        }
+        #ba-after {
+            clip-path: polygon(var(--pos) 0, 100% 0, 100% 100%, var(--pos) 100%);
+        }
+        #ba-handle {
+            left: var(--pos);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen w-screen overflow-hidden flex flex-col font-body-base antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface border-b border-subtle dark:border-border-subtle h-topbar-height flex justify-between items-center w-full px-gutter-lg max-w-full flex-shrink-0 z-50 relative">
+<!-- Left: Brand & Search -->
+<div class="flex items-center gap-6">
+<div class="text-headline-md font-headline-md text-on-surface dark:text-on-surface tracking-tight">Studio PoC</div>
+</div>
+<!-- Center: Navigation Links -->
+<ul class="flex items-center gap-8 h-full">
+<li class="h-full flex items-center">
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Projects</a>
+</li>
+<li class="h-full flex items-center">
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Catalog</a>
+</li>
+<li class="h-full flex items-center">
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">3D Workspace</a>
+</li>
+<li class="h-full flex items-center border-b-2 border-primary pt-0.5">
+<a class="text-primary dark:text-primary font-label-sm text-label-sm active:opacity-80 active:scale-95 transition-all" href="#">Renders</a>
+</li>
+<li class="h-full flex items-center">
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Team</a>
+</li>
+</ul>
+<!-- Right: Actions -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded text-text-secondary hover:text-primary hover:bg-surface-variant transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-text-secondary hover:text-primary hover:bg-surface-variant transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-text-secondary hover:text-primary hover:bg-surface-variant transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-size: 20px;">help</span>
+</button>
+</div>
+<button class="px-3 py-1.5 rounded border border-subtle text-on-surface font-label-sm text-label-sm hover:bg-surface-variant transition-colors">
+                Save
+            </button>
+<button class="px-4 py-1.5 rounded bg-primary text-on-primary font-label-sm text-label-sm hover:bg-primary-fixed transition-colors">
+                Export Scene
+            </button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-subtle overflow-hidden ml-2">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A small, generic circular user avatar placeholder image, minimalist flat design, dark grey background with light grey silhouette, professional and clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-Eb2f3STuEL2Y3zgSGYXqvZk1OV8QQP4c7C1fDkmb6z6WejmAGlNgC5d5OoaCaATUTTh12rVVEic9rl_ZCUcWfduIuIasEnhoDlmITql9-ne33AH120OVM5XJUUS2q5bPCFq89Q8HAPh5WSCqPVm2KEkJo_opxqtREFU-PfyLKJ0P1jGAX6i8lIL301y6W9zG_BUOwzlgNFHDHXitvKK3QA1FkHaePgKJ07ZTEofnL5jf6FhZeWDomw"/>
+</div>
+</div>
+</nav>
+<!-- Main Layout Workspace -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Center Viewport: Before/After & Thumbs -->
+<main class="flex-1 bg-viewport-bg flex flex-col p-gutter-lg overflow-hidden relative">
+<!-- Before/After Slider Container -->
+<div class="relative flex-1 rounded-lg border border-subtle overflow-hidden select-none bg-surface-dim group cursor-crosshair" id="ba-container">
+<!-- Before Image (Base) -->
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover" data-alt="A wide angle photograph of an empty, stark modern living room before renovation. Bare white walls, raw concrete floor, large empty windows letting in harsh daylight. Minimalist structural elements visible, waiting to be designed. High resolution, technical real estate photography style, neutral cool lighting." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDME4fIDwTBZ4jKuLA6zKor7OH2TUXqCeOs56fv1StWybaXzkk8R4YD4F76JvTVyzHY89bfINQ6LB-71_POWVl5RIvXwuZUnist9t2QHeX679ebU4E3HBVAVSO_qq4MpcTUUdfjScHKj_FtSMNLXvYadOAh0Y7BKOxSYXCD8FOWsoDDgMM08sJRBzdWYRCajq5w2Ag5MwXQLs0WKv9K17WegqU2mKO8xIZLtlxbtSy5IlcmtLWCFOBTlw"/>
+</div>
+<!-- Chip: Before -->
+<div class="absolute top-4 left-4 px-3 py-1.5 rounded bg-surface-container-high/80 backdrop-blur-md border border-subtle font-label-caps text-label-caps text-text-secondary z-10 shadow-sm pointer-events-none">
+                    Before
+                </div>
+<!-- After Image (Overlay clipped via CSS variables & JS) -->
+<div class="absolute inset-0 z-0" id="ba-after">
+<img class="w-full h-full object-cover" data-alt="A photorealistic 3D render of the same living room after renovation, styled in a warm Japandi aesthetic. Featuring low-profile light oak wood furniture, a textured cream bouclé sofa, subtle organic shaped ceramic decor, and a large natural fiber rug. Soft, warm ambient lighting mimicking late afternoon sun. High-end interior design visualization, professional lighting and materials." draggable="false" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0Y9ue5DQgYzzlfS_cljKknZkQ6-p0_H0ICzVIkhMS9eOEAJZ1oy77Y0HRJgCVO58wjVpwN47J4oxcJrYPZZG-WoK2vVAlIqkS1X2CfPZ2CcOfHLibatC3xI0Lgl4uJ_AWwOL1d_xZtPMzeBcAG2fzB8kNZ-JHq5gJNc2zjaD7CUjX3d-rpzXE7xYWgz0o-py03khsImwgGuQKni469-RVhjBs9AwVVI5TpTlUcEr7uCnnozax-BDjtQ"/>
+</div>
+<!-- Chip: After -->
+<div class="absolute top-4 right-4 px-3 py-1.5 rounded bg-surface-container-high/80 backdrop-blur-md border border-primary/50 font-label-caps text-label-caps text-primary z-10 shadow-sm pointer-events-none">
+                    After
+                </div>
+<!-- Slider Handle -->
+<div class="absolute top-0 bottom-0 w-[2px] bg-primary z-20 -ml-[1px] group-hover:bg-primary-fixed transition-colors pointer-events-none" id="ba-handle">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-surface-container-highest border border-primary text-primary flex items-center justify-center shadow-lg pointer-events-auto cursor-ew-resize hover:scale-110 hover:bg-surface-bright transition-transform">
+<span class="material-symbols-outlined" style="font-size: 16px;">swap_horiz</span>
+</div>
+</div>
+</div>
+<!-- Thumbnail Rail -->
+<div class="mt-gutter-lg h-[90px] flex gap-4 overflow-x-auto custom-scrollbar flex-shrink-0 items-center px-1">
+<!-- Thumb: Empty Room -->
+<div class="w-32 h-20 rounded-md border border-subtle relative overflow-hidden flex-shrink-0 cursor-pointer hover:border-text-secondary transition-colors group">
+<img class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" data-alt="A small thumbnail image showing a stark, empty white room with bare concrete floors and windows. Minimalist and raw aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPISbZaT2boSERQYv10-rM8lrtfKQc_CPrYB6b2NFt4-TGHvyZJhHN_tShoZ75Skk0pVCXSJVx4YqohnXqRH5Zx33HNacOpeC8gJYzxxELjcE217lutrIJbh2E3lKq0B0EBYpm2zB0e7fJPC3eLgmfo_2Ksh1RmLnZaMwnRrR_xeVweB1z2cSAYiINZv9GhxE_9l9Wf3E1c3zgAgEK0Uvf-AB5JVMosqO7Z9syaUqPI8vddc3hER3Kig"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface/90 backdrop-blur-sm p-1 border-t border-subtle text-center font-label-sm text-label-sm text-text-secondary truncate">
+                        Empty room
+                    </div>
+</div>
+<!-- Thumb: Your design (Active) -->
+<div class="w-32 h-20 rounded-md border-2 border-primary relative overflow-hidden flex-shrink-0 cursor-pointer shadow-[0_0_0_1px_rgba(173,198,255,0.2)]">
+<img class="w-full h-full object-cover" data-alt="A small thumbnail image showing a beautifully designed Japandi living room with warm wood tones and a cream sofa." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj46ugDSuJ5-yNznsk57fAKva1QeG-iAIzI_O_-EQpwluuN5ZRT2g6loqPpk2Jlp8ZJBM0S8bjVp-Fr-dx5Dl4B5jGpbuc2xjA5hy7b7C33kq4CKuacvVMduJ5UPp1l_7Halu_j6Yv16Cv_HnQmcNagfs4zBXRhk0fN1HdHsAJu6Xuka6xjeKJHYSIXxbYEguFI7h8WUsENTp55MKgG3rH7GdiFgby8zBLamDMdkrdfxDNG-Dz8szvjQ"/>
+<div class="absolute bottom-0 inset-x-0 bg-primary/20 backdrop-blur-md p-1 border-t border-primary/30 text-center font-label-sm text-label-sm text-primary font-medium truncate">
+                        Your design
+                    </div>
+</div>
+<!-- Thumb: Japandi concept 1 -->
+<div class="w-32 h-20 rounded-md border border-subtle relative overflow-hidden flex-shrink-0 cursor-pointer hover:border-text-secondary transition-colors group">
+<img class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" data-alt="A small thumbnail image of a living room render featuring dark walnut furniture and minimalist decor in a Japandi style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANKXbwzgpbxHG8qDMWkruNc5tipATx7M6oFeu_6vMDgs9AS-avpotWtMyHSCyR34pviysF8w-P6mhNhr8RlSYd_vSi4omH3UfS-vDkki-7sJR2MTzQ--H_gbC_z1RDUNdHW1vpWJYyoQccZOxUpY2rTH0JokOJxRlRAOH1BphcTdspv0ITbqDciSf3OL6P2KWxwlYLqVAxFYO42QFNfr7ibxDFK3oaBZHMdAAzRDWnntlhe-cHn2SnZQ"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface/90 backdrop-blur-sm p-1 border-t border-subtle text-center font-label-sm text-label-sm text-text-secondary truncate">
+                        Japandi concept 1
+                    </div>
+</div>
+<!-- Thumb: Japandi concept 2 -->
+<div class="w-32 h-20 rounded-md border border-subtle relative overflow-hidden flex-shrink-0 cursor-pointer hover:border-text-secondary transition-colors group">
+<img class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" data-alt="A small thumbnail image of a living room render focusing on textured stone walls and low seating in a Japandi style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCChWBUcm_Qd_X-EmRv0lzESunM2UrKA_5TpBAI8h_N9qbbZQ9HcJFyoo33lTYJ37F_KEqkdE29PL1y_DZTsbnjI9q59vX8dhVJ928alYnIkHVS0cVUJ738A-5gIeaS6Ej6YZ2KdXIdMsvDh8Nfi5sh7yjTsUXXLSyJGDNu4AAzuT4US1H_atsuLhntuHykvZw7A7oh3VwbsNzDDrTBY_Y8m6cFfDgt8-EAOBtc-AZMW_HIvtDK7hNy4g"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface/90 backdrop-blur-sm p-1 border-t border-subtle text-center font-label-sm text-label-sm text-text-secondary truncate">
+                        Japandi concept 2
+                    </div>
+</div>
+<!-- Thumb: Japandi concept 3 -->
+<div class="w-32 h-20 rounded-md border border-subtle relative overflow-hidden flex-shrink-0 cursor-pointer hover:border-text-secondary transition-colors group">
+<img class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" data-alt="A small thumbnail image of an airy, light-filled living room with bamboo elements and paper lanterns in a Japandi style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYxK4O88TtMGti1RIXv0-TjgEkO1LcZuPBabfljz7buU1p0avz86854npglnBYUH-FJRwJEonG0wAc-wRjlYxitSFd1OotEOCxnyksOfTWHrMDxntVIEdauKbLLsi09I9eb83GBL9RHOBUYGTPNucEHBeUoU0Jj_sKqJxcZcJHSdQoMBWq_ST2nyPNvwRWHKuq-G04s1qyszdVT9FBx2DZ_hKYQYot2d8PfEbIAM9rB0RhWWIEDHjuWw"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface/90 backdrop-blur-sm p-1 border-t border-subtle text-center font-label-sm text-label-sm text-text-secondary truncate">
+                        Japandi concept 3
+                    </div>
+</div>
+<!-- Thumb: Japandi concept 4 -->
+<div class="w-32 h-20 rounded-md border border-subtle relative overflow-hidden flex-shrink-0 cursor-pointer hover:border-text-secondary transition-colors group">
+<img class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" data-alt="A small thumbnail image of a minimalist living room featuring a statement bonsai tree and dark slate floors in a Japandi style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEXEk6mEBqPIzTf-SgRquZp9xwzVq7w2-sUyyOENZtZzVPMRX1PbURICZ67GmhhpXgInchV7L0F6BxNZuUtetWH1APMZeycuSHKxOb6LG-o8vH0R1aSQitCczht43EaVOB0jVIE1D7pNMwRtWpRURDee15aQFQLNtZR35A-p0hyeqPPtMNXMtHfGClg9gGVaA7OusBS58f4Slh0OCnVWIsz_rLzglKkuG3xcCyjxucQHtQtNytNvQtBA"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface/90 backdrop-blur-sm p-1 border-t border-subtle text-center font-label-sm text-label-sm text-text-secondary truncate">
+                        Japandi concept 4
+                    </div>
+</div>
+</div>
+</main>
+<!-- Right Sidebar: Results Panel -->
+<aside class="w-sidebar-right bg-surface border-l border-subtle flex flex-col h-full flex-shrink-0">
+<div class="p-4 border-b border-subtle flex items-center justify-between">
+<h2 class="font-label-caps text-label-caps text-text-secondary">RESULT</h2>
+<span class="w-2 h-2 rounded-full bg-success shadow-[0_0_8px_rgba(16,185,129,0.4)]"></span>
+</div>
+<div class="p-4 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-6">
+<!-- Image Meta -->
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded bg-surface-container border border-subtle overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A tiny square thumbnail crop showing a detail of a cream bouclé sofa fabric texture under warm light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBikyzschoKO6nspdGSblbSruytOTbzScaJLBqQIbCExIjPdyfhXDI-QttbA2lDPdcuupI6cVQG9jcrwR_rmc625oP_S5ZZTogLW3R1dTStKnTcNfVcLVxvcLSggaP1eArr8IpkxNCidhvsdooAMsoJeRuqt3AmtMqd9pwPTd20QH06l8Y1A8j9Q9C9e1li2R-zNBk7tKpfr2AW4pcryJENLQfzZgt1d1Ref9le9TVIllqN8II5AtoUWw"/>
+</div>
+<div>
+<div class="font-body-base text-body-base text-on-surface mb-0.5">Living Room - View 1</div>
+<div class="font-label-sm text-label-sm text-text-secondary">Rendered in 4.2s</div>
+</div>
+</div>
+<!-- Summary List -->
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center group">
+<span class="font-body-sm text-body-sm text-text-secondary group-hover:text-on-surface transition-colors">Room</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Living Area</span>
+</div>
+<div class="h-px w-full bg-border-subtle/50"></div>
+<div class="flex justify-between items-center group">
+<span class="font-body-sm text-body-sm text-text-secondary group-hover:text-on-surface transition-colors">Items placed</span>
+<div class="flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">24</span>
+<span class="material-symbols-outlined text-primary text-[14px]">category</span>
+</div>
+</div>
+<div class="h-px w-full bg-border-subtle/50"></div>
+<div class="flex justify-between items-center group">
+<span class="font-body-sm text-body-sm text-text-secondary group-hover:text-on-surface transition-colors">Finishes</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Oak, Bouclé, Plaster</span>
+</div>
+<div class="h-px w-full bg-border-subtle/50"></div>
+<div class="flex justify-between items-center group">
+<span class="font-body-sm text-body-sm text-text-secondary group-hover:text-on-surface transition-colors">Style</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium px-2 py-0.5 bg-surface-container rounded text-xs border border-subtle">Japandi</span>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-4 border-t border-subtle bg-surface-container-lowest flex flex-col gap-2">
+<button class="w-full bg-primary text-on-primary py-2.5 rounded font-label-caps text-label-caps tracking-wider flex items-center justify-center gap-2 hover:bg-primary-fixed transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+                    Export screenshot (2x)
+                </button>
+<button class="w-full text-text-secondary py-2 rounded font-label-sm text-label-sm hover:text-on-surface hover:bg-surface-variant transition-colors flex items-center justify-center gap-1.5 border border-transparent hover:border-subtle">
+<span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+                    Back to studio
+                </button>
+</div>
+</aside>
+</div>
+<!-- Script for Before/After Slider Interaction -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('ba-container');
+            const handle = document.getElementById('ba-handle');
+            let isDragging = false;
+
+            const updateSlider = (clientX) => {
+                const rect = container.getBoundingClientRect();
+                let x = clientX - rect.left;
+                
+                // Clamp values between 0 and container width
+                x = Math.max(0, Math.min(x, rect.width));
+                
+                const percentage = (x / rect.width) * 100;
+                container.style.setProperty('--pos', `${percentage}%`);
+            };
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                container.style.cursor = 'ew-resize';
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                container.style.cursor = 'crosshair';
+            });
+            
+            // Handle touch devices
+            container.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                updateSlider(e.touches[0].clientX);
+            }, { passive: true });
+            
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.touches[0].clientX);
+            }, { passive: true });
+            
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        });
+    </script>
+</body></html>

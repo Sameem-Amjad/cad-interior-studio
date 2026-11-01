@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio PoC - Concept Lightbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#002e6a",
+                        "background": "#111317",
+                        "viewport-bg": "#0B0D10",
+                        "on-tertiary-container": "#461f00",
+                        "on-tertiary-fixed-variant": "#723600",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-dim": "#111317",
+                        "surface-tint": "#adc6ff",
+                        "on-surface": "#e2e2e8",
+                        "inverse-primary": "#005ac2",
+                        "inverse-on-surface": "#2f3035",
+                        "tertiary-fixed": "#ffdcc6",
+                        "success": "#10B981",
+                        "inverse-surface": "#e2e2e8",
+                        "border-subtle": "#262B36",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-background": "#e2e2e8",
+                        "tertiary-container": "#df7412",
+                        "primary": "#adc6ff",
+                        "warning": "#F59E0B",
+                        "danger": "#EF4444",
+                        "on-secondary-fixed-variant": "#44474f",
+                        "surface-container-lowest": "#0c0e12",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface": "#111317",
+                        "secondary-fixed-dim": "#c4c6d0",
+                        "surface-variant": "#333539",
+                        "surface-container-highest": "#333539",
+                        "surface-container-low": "#1a1c20",
+                        "primary-container": "#4d8eff",
+                        "tertiary": "#ffb786",
+                        "on-primary-container": "#00285d",
+                        "outline-variant": "#424754",
+                        "secondary-container": "#44474f",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#b3b5be",
+                        "secondary-fixed": "#e0e2ec",
+                        "surface-container": "#1e2024",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#311400",
+                        "on-secondary": "#2d3038",
+                        "surface-bright": "#37393e",
+                        "text-primary": "#E8EAF0",
+                        "on-error-container": "#ffdad6",
+                        "text-secondary": "#8A93A6",
+                        "surface-container-high": "#282a2e",
+                        "secondary": "#c4c6d0",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary": "#502400",
+                        "on-secondary-fixed": "#191c23",
+                        "error": "#ffb4ab",
+                        "outline": "#8c909f",
+                        "tertiary-fixed-dim": "#ffb786"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1rem",
+                        "gutter-lg": "16px",
+                        "sidebar-left": "240px",
+                        "topbar-height": "56px",
+                        "sidebar-right": "300px",
+                        "panel-gap": "1px",
+                        "gutter-md": "12px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "mono-label": ["Inter"],
+                        "body-base": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "mono-label": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-base": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.text-primary'); }
+        .glass-panel { background-color: rgba(23, 26, 33, 0.8); backdrop-filter: blur(8px); }
+    </style>
+</head>
+<body class="antialiased overflow-hidden flex flex-col h-screen">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface border-b border-subtle dark:border-border-subtle flex justify-between items-center w-full px-gutter-lg max-w-full docked full-width top-0 h-topbar-height z-10 shrink-0">
+<div class="flex items-center gap-6">
+<span class="text-headline-md font-headline-md text-on-surface dark:text-on-surface tracking-tight">Studio PoC</span>
+<div class="hidden md:flex gap-4">
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Projects</a>
+<a class="text-primary dark:text-primary border-b-2 border-primary pb-1 font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Catalog</a>
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">3D Workspace</a>
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Renders</a>
+<a class="text-text-secondary dark:text-text-secondary font-label-sm text-label-sm hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Team</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="p-1 text-text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span></button>
+<button class="p-1 text-text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span></button>
+<button class="p-1 text-text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span></button>
+</div>
+<button class="bg-transparent border border-subtle text-text-primary px-3 py-1 rounded font-label-sm text-label-sm hover:border-primary transition-colors">Save</button>
+<button class="bg-primary text-on-primary px-3 py-1 rounded font-label-sm text-label-sm hover:opacity-90 transition-opacity">Export Scene</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-subtle bg-surface-variant">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A small, professional user avatar portrait. The image is a close-up headshot of a person looking forward against a neutral grey studio background. The lighting is soft and even, typical of a modern corporate profile picture. The style is hyper-realistic and high-resolution, fitting a professional 3D design software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCORrPQlaQZ34--D6I_yJkHiqRAMh04tZ6aYQr7eMYrEgkDwZHhWFo9HAqh7FRPbhoqyTxUUvV_0VYKZxgJoVbS4RPZeK9fpi9QhVDPKnx-CxdN3UH5JUo6nWwUsPrQ-sbaKXfcGe60MscBLaue_ljnfM45W82uMoomTReO0Ya33BIIgKvk0Zhgk6ojM3cOUHOiObCOimexB1bbDxHHPCPhGKORm8eg4ZwCMC5Bahe17LQK59RU4C-4sA"/>
+</div>
+</div>
+</nav>
+<!-- Main Workspace Area -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Dimmed Background Content (Simulating the S2 Layout underneath) -->
+<div class="absolute inset-0 flex opacity-30 pointer-events-none">
+<!-- SideNavBar Placeholder -->
+<aside class="bg-surface-container dark:bg-surface-container border-r border-subtle dark:border-border-subtle flex flex-col h-full py-gutter-md docked left-0 w-sidebar-left shrink-0">
+<div class="px-gutter-md mb-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant border border-subtle overflow-hidden">
+<img alt="Studio PoC Logo" class="w-full h-full object-cover" data-alt="A small, geometric abstract logo for Studio PoC. The logo features sharp, minimalist 3D shapes in monochrome tones with a subtle blue accent. It sits on a dark background, reflecting a professional, technical software aesthetic. The rendering is crisp and high-contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZZ1kkjsRBuzSgxynB1MNzrqg7VchNiO3kHnBMod1YzzQ7dN7px9kyl9bcICoq0YPNZuaGMpFxUKdaQ03GymceI7Mz5KfP6e9ZRcjQOeNJse-TfEu1ILZLJ1Oyah0b01N7tRR4rMzKSYbHJRwyHRPaxqU-0_kV0td6oOLCCNASc0T-f-UI1MwUFZafXlDMC8aKU60mQsDHeMmLxflgwzwaWaOxBnTnImOsmSXWN848jhLrKo9N2EVDxg"/>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg font-bold text-on-surface">Project Alpha</div>
+<div class="text-text-secondary font-label-sm text-label-sm">Phase: Concept</div>
+</div>
+</div>
+<button class="mt-4 w-full bg-primary text-on-primary py-2 rounded font-label-sm text-label-sm flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Object
+                    </button>
+</div>
+<div class="flex flex-col gap-1 px-2 flex-1">
+<div class="flex items-center gap-3 px-3 py-2 rounded font-label-caps text-label-caps text-text-secondary border-l-2 border-transparent">
+<span class="material-symbols-outlined text-[18px]">account_tree</span> Scene Tree
+                     </div>
+<div class="flex items-center gap-3 px-3 py-2 rounded font-label-caps text-label-caps text-text-secondary border-l-2 border-transparent">
+<span class="material-symbols-outlined text-[18px]">layers</span> Layers
+                     </div>
+<div class="flex items-center gap-3 px-3 py-2 rounded font-label-caps text-label-caps text-text-secondary border-l-2 border-transparent">
+<span class="material-symbols-outlined text-[18px]">texture</span> Materials
+                     </div>
+<div class="flex items-center gap-3 px-3 py-2 rounded font-label-caps text-label-caps border-l-2 border-primary bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[18px]">light_mode</span> Lighting
+                     </div>
+<div class="flex items-center gap-3 px-3 py-2 rounded font-label-caps text-label-caps text-text-secondary border-l-2 border-transparent">
+<span class="material-symbols-outlined text-[18px]">info</span> Inspector
+                     </div>
+</div>
+</aside>
+<!-- Viewport Placeholder -->
+<main class="flex-1 bg-viewport-bg border-r border-subtle relative">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-text-secondary font-mono-label text-mono-label">3D Viewport</span>
+</div>
+</main>
+<!-- Right Sidebar Placeholder -->
+<aside class="w-sidebar-right bg-surface-container border-subtle border-l shrink-0 flex flex-col p-4">
+<div class="h-8 bg-surface-variant rounded mb-4 w-1/2"></div>
+<div class="h-32 bg-surface-variant rounded mb-2 border border-subtle"></div>
+<div class="h-32 bg-surface-variant rounded border border-subtle"></div>
+</aside>
+</div>
+<!-- S4 - Modal Lightbox Overlay -->
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-8">
+<!-- Modal Container -->
+<div class="glass-panel border border-subtle rounded-lg flex max-w-6xl w-full h-[80vh] shadow-2xl overflow-hidden relative">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 z-10 text-text-secondary hover:text-primary transition-colors bg-surface/50 rounded-full p-1 border border-subtle backdrop-blur-md">
+<span class="material-symbols-outlined">close</span>
+</button>
+<!-- Left/Center: Large Image -->
+<div class="flex-1 bg-viewport-bg relative flex items-center justify-center border-r border-subtle overflow-hidden">
+<img alt="Japandi Living Room Concept" class="w-full h-full object-contain" data-alt="A high-quality, photorealistic AI-generated concept image of a Japandi-style living room. The room features a harmonious blend of Japanese minimalism and Scandinavian functionality. Light oak wood panels, a low-profile neutral linen sofa, and a woven rug sit on a smooth concrete floor. Natural sunlight streams in through sheer curtains, creating soft shadows. The mood is calm, serene, and sophisticated, reflecting a high-end interior design visualization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbMLGZYFa5D_8kSCACHHT49oIARvMN4yKDIv0ekP0ha5Q2gN5fl2GKRGxeG2bdJpK88K71cmjBfS03CQchED7fvG0Jk2YNUmhxYNKh3BG4akn0zqzd5WPs3vGxVX_19KWZSLQMD3ieybu4MQzWrtklzTpdiRg2G-66iSwrjNJQxZPtlpjb5RvNeCBxQL7ROCtVLdxGXzbQ8ilQd2n4jvgHoVSDXQZLxL8p8atdij0p4Bl-1owHYd_5yA"/>
+<!-- Watermark Chip -->
+<div class="absolute bottom-4 left-4 bg-surface-container-high/80 backdrop-blur-md border border-subtle px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-primary">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-text-primary">AI concept — inspiration</span>
+</div>
+</div>
+<!-- Right Column: Details & Actions -->
+<div class="w-[320px] shrink-0 bg-surface flex flex-col p-6">
+<div class="flex-1">
+<!-- Navigation Arrows -->
+<div class="flex justify-end gap-2 mb-8">
+<button class="w-8 h-8 rounded border border-subtle flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary transition-colors bg-surface-variant/50">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-subtle flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary transition-colors bg-surface-variant/50">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<!-- Details -->
+<div class="mb-2">
+<h2 class="font-headline-lg text-headline-lg text-text-primary mb-1">Japandi</h2>
+<p class="font-mono-label text-mono-label text-text-secondary">Concept 2 of 4</p>
+</div>
+<div class="mt-6 border-t border-subtle pt-6">
+<h3 class="font-label-caps text-label-caps text-text-secondary mb-3">Generation Params</h3>
+<div class="space-y-2">
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-text-secondary">Style</span>
+<span class="text-text-primary">Minimalist, Zen</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-text-secondary">Lighting</span>
+<span class="text-text-primary">Soft Daylight</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-text-secondary">Seed</span>
+<span class="text-text-primary font-mono-label">849201A</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 mt-8">
+<button class="w-full bg-primary text-on-primary py-2.5 rounded font-label-sm text-label-sm flex justify-center items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Use as reference
+                        </button>
+<button class="w-full bg-transparent border border-subtle text-text-primary py-2.5 rounded font-label-sm text-label-sm flex justify-center items-center gap-2 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span> Download
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
